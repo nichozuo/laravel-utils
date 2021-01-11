@@ -1,0 +1,20 @@
+{
+    "name": "nichozuo/laravel-utils",
+    "description": "Common utils for laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "nichozuo",
+            "email": "nichozuo@qq.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "laravel/framework": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0|^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nichozuo\\LaravelUtils\\": "src"
+        }
+    }
+}
