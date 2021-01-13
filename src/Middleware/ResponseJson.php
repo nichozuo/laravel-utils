@@ -7,6 +7,7 @@ namespace Nichozuo\LaravelUtils\Middleware;
 use Closure;
 use Illuminate\Http\JsonResponse;
 use Nichozuo\LaravelUtils\Traits\ExceptionsRenderTrait;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ResponseJson
 {
@@ -48,6 +49,8 @@ class ResponseJson
                 }
             }
             return $response->setData($base);
+        } elseif ($response instanceof BinaryFileResponse) {
+            return $response;
         } elseif ($response->getContent() == "") {
             return response()->json($base, 200);
         } else {
