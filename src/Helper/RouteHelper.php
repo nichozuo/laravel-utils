@@ -70,7 +70,8 @@ class RouteHelper
         $newActions = [];
         $ref = new ReflectionClass($controller);
         foreach ($ref->getMethods() as $method) {
-            if ($method->getDeclaringClass()->getName() == $controller) {
+//            dd($method->getModifiers());
+            if ($method->getDeclaringClass()->getName() == $controller && $method->getModifiers() == 1) {
                 $newActions[] = $method->getName();
             } else {
                 break;
