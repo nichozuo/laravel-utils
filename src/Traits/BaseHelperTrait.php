@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Nichozuo\LaravelUtils\Base;
+namespace Nichozuo\LaravelUtils\Traits;
 
 
-class BaseHelper
+trait BaseHelperTrait
 {
     private static $instance = null;
 
