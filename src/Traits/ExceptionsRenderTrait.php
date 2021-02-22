@@ -63,7 +63,7 @@ trait ExceptionsRenderTrait
             case ValidationException::class:
                 $code = 9;
                 $message = "数据验证失败";
-                $description = $this->getValidationErrors($e->errors());
+                $description = "【{$this->getValidationErrors($e->errors())}】字段验证失败";
                 break;
             case NotFoundHttpException::class:
                 $code = 9;
@@ -122,7 +122,7 @@ trait ExceptionsRenderTrait
         $err = [];
         foreach ($errors as $key => $value) {
             foreach ($value as $item) {
-                $err[] = $item;
+                $err[] = $key;
             }
         }
         return implode($err);
