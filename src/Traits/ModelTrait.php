@@ -4,6 +4,7 @@
 namespace Nichozuo\LaravelUtils\Traits;
 
 
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Nichozuo\LaravelUtils\Exceptions\Err;
 
@@ -47,7 +48,9 @@ trait ModelTrait
 
     public function scopeWhereBetweenExist($query, $field, $key, $params)
     {
-        if (isset($params[$key])) {
+        if (isset($params[$key]) && $params[$key] != []) {
+            $start = Carbon::parse($params[$key][0])->toDateString();
+            $end = Carbon::parse($params[$key][1])->toDateString();
             return $query->whereBetween($field, $params[$key]);
         }
     }

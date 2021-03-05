@@ -125,6 +125,6 @@ trait ExceptionsRenderTrait
                 $err[] = $key;
             }
         }
-        return implode($err);
+        return implode(',', $err);
     }
 }
