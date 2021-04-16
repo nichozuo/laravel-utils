@@ -71,7 +71,7 @@ trait TestCaseTrait
                 str_replace(
                     'ControllerTest',
                     '/',
-                    $t1[3]
+                    end($t1)
                 )
             )
         );
