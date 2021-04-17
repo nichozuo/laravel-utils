@@ -63,7 +63,13 @@ trait TestCaseTrait
     {
         $t1 = explode('\\', $method);
         $urls[] = 'api';
-        $urls[] = Str::snake($t1[2]);
+
+        foreach ($t1 as $key => $value) {
+            if ($key > 1 && $key < count($t1) -1) {
+                $urls[] = Str::snake($t1[$key]);
+            }
+        }
+
         $urls[] = str_replace(
             '::test_',
             '',
@@ -75,6 +81,7 @@ trait TestCaseTrait
                 )
             )
         );
+
         return '/' . implode('/', $urls);
     }
 }
