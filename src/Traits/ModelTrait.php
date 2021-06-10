@@ -42,7 +42,7 @@ trait ModelTrait
             $key = $field;
 
         if (isset($params[$key])) {
-            return $query->where($key, 'like', "%{$params[$key]}%");
+            return $query->where($field, 'like', "%{$params[$key]}%");
         }
     }
 
