@@ -154,4 +154,17 @@ trait ModelTrait
             return false;
         }
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @throws Err
+     */
+    public static function findOrError($id)
+    {
+        $model = self::find($id);
+        if (!$model)
+            throw Err::NewText("没有此【" . self::$name . "】记录");
+        return $model;
+    }
 }
