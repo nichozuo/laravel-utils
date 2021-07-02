@@ -31,6 +31,11 @@ class ResponseJson
                 // 如果是exception
                 if (property_exists($data, 'code') && property_exists($data, 'message') && $data->code !== 0)
                     return $response->setData($data);
+
+                // 处理一些统计数据
+                if (property_exists($data, 'data') && property_exists($data, 'statistics'))
+                    $base['statistics'] = $data->statistics;
+
                 // 处理标准分页
                 if (property_exists($data, 'data') && property_exists($data, 'current_page')) {
                     $base['data'] = $data->data;
