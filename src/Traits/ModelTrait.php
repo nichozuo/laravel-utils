@@ -167,4 +167,14 @@ trait ModelTrait
             throw Err::NewText("没有此【" . self::$name . "】记录");
         return $model;
     }
+
+    /**
+     * @param $query
+     * @param string $key
+     * @return mixed
+     */
+    public function scopeNewest($query, $key = 'updated_at')
+    {
+        return $query->orderBy($key, 'desc');
+    }
 }
