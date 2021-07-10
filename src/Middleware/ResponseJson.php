@@ -28,6 +28,10 @@ class ResponseJson
             $type = gettype($data);
 
             if ($type == 'object') {
+                // 如果是version
+                if(strpos($request->getPathInfo(), '/auth/version'))
+                    return $response->setData($data);
+
                 // 如果是exception
                 if (property_exists($data, 'code') && property_exists($data, 'message') && $data->code !== 0)
                     return $response->setData($data);
