@@ -30,6 +30,25 @@ trait ModelTrait
     }
 
     /**
+     * 如果key/value存在，添加whereIn条件
+     *
+     * @param $query
+     * @param $field // 字段名
+     * @param $params // 输入参数
+     * @param null $key // 参数中的key，为空则默认为字段名
+     * @return mixed
+     */
+    public function scopeWhereInExist($query, $field, $params, $key = null)
+    {
+        if ($key == null)
+            $key = $field;
+
+        if (isset($params[$key]) && count($params[$key]) > 0) {
+            return $query->whereIn($field, $params[$key]);
+        }
+    }
+
+    /**
      * @param $query
      * @param $field
      * @param $params
