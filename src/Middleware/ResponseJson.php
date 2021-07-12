@@ -22,15 +22,23 @@ class ResponseJson
             'message' => 'ok',
         ];
 
+        $responseDontWrap = config('codegen.responseDontWrap');
+        if (count($responseDontWrap)) {
+            $pathInfo = $request->getPathInfo();
+            if (in_array($pathInfo, $responseDontWrap)) {
+                return $response;
+            }
+        }
+
         if ($response instanceof JsonResponse) {
 
             $data = $response->getData();
             $type = gettype($data);
 
             if ($type == 'object') {
-                // 如果是version
-                if(strpos($request->getPathInfo(), '/auth/version'))
-                    return $response->setData($data);
+//                // 如果是version
+//                if (strpos($request->getPathInfo(), '/auth/version'))
+//                    return $response->setData($data);
 
                 // 如果是exception
                 if (property_exists($data, 'code') && property_exists($data, 'message') && $data->code !== 0)
